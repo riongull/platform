@@ -18,11 +18,11 @@ module.exports = (config) => {
     frameworks: ['mocha', 'chai', 'webpack'],
     files: [
       'lib/test/karma/loader.js',
-      './test/functional/platform/featureFlags.spec.js',
+      './test/**/!(proofs|waitForStateTransitionResult).spec.js',
     ],
     preprocessors: {
       'lib/test/karma/loader.js': ['webpack', 'sourcemap'],
-      './test/functional/platform/featureFlags.spec.js': ['webpack', 'sourcemap']
+      './test/**/!(proofs|waitForStateTransitionResult).spec.js': ['webpack', 'sourcemap'],
     },
     webpack: {
       mode: 'development',
@@ -60,10 +60,9 @@ module.exports = (config) => {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    browsers: ['Chrome'],
-    singleRun: true,
-    concurrency: Infinity,
-    browserNoActivityTimeout: 10 * 60 * 1000,
+    browsers: ['ChromeHeadless'],
+    singleRun: false,
+    concurrency: 1,
     plugins: [
       karmaMocha,
       karmaMochaReporter,
