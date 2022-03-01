@@ -15,14 +15,21 @@ if (dotenvResult.error) {
 
 module.exports = (config) => {
   config.set({
+    client: {
+      mocha: {
+        timeout: 650000,
+      },
+    },
+    browserNoActivityTimeout: 900000,
+    browserDisconnectTimeout: 900000,
     frameworks: ['mocha', 'chai', 'webpack'],
     files: [
       'lib/test/karma/loader.js',
-      './test/**/!(proofs|waitForStateTransitionResult).spec.js',
+      './test/functional/core/broadcastTransaction.spec.js',
     ],
     preprocessors: {
       'lib/test/karma/loader.js': ['webpack', 'sourcemap'],
-      './test/**/!(proofs|waitForStateTransitionResult).spec.js': ['webpack', 'sourcemap'],
+      './test/functional/core/broadcastTransaction.spec.js': ['webpack', 'sourcemap'],
     },
     webpack: {
       mode: 'development',
@@ -60,7 +67,7 @@ module.exports = (config) => {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    browsers: ['ChromeHeadless'],
+    browsers: ['Chrome'],
     singleRun: false,
     concurrency: 1,
     plugins: [
