@@ -50,6 +50,9 @@ function validateInstantAssetLockProofStructureFactory(
     }
 
     if (!await stateRepository.verifyInstantLock(instantLock)) {
+      console.error('Failed to verify instant lock!');
+      console.log(instantLock);
+      console.log(instantLock.toBuffer().toString('hex'));
       result.addError(new InvalidIdentityAssetLockProofSignatureError());
 
       return result;
