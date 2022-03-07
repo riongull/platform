@@ -25,11 +25,11 @@ module.exports = (config) => {
     frameworks: ['mocha', 'chai', 'webpack'],
     files: [
       'lib/test/karma/loader.js',
-      './test/functional/core/broadcastTransaction.spec.js',
+      './test/functional/dapi/subscribeToBlockHeadersWithChainLocksHandlerFactory.spec.js',
     ],
     preprocessors: {
       'lib/test/karma/loader.js': ['webpack', 'sourcemap'],
-      './test/functional/core/broadcastTransaction.spec.js': ['webpack', 'sourcemap'],
+      './test/functional/dapi/subscribeToBlockHeadersWithChainLocksHandlerFactory.spec.js': ['webpack', 'sourcemap'],
     },
     webpack: {
       mode: 'development',
@@ -67,7 +67,7 @@ module.exports = (config) => {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
     singleRun: false,
     concurrency: 1,
     plugins: [
